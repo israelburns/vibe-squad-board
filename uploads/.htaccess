@@ -1,0 +1,5 @@
+# No code execution in the file-drop folder — uploads are data only
+php_flag engine off
+AddType text/plain .php .php3 .php4 .php5 .phtml .pht .cgi .pl .py .asp .aspx .sh
+RemoveHandler .php .phtml .cgi .pl .py
+Options -ExecCGI -Indexes

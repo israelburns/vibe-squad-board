@@ -1,0 +1,6 @@
+<FilesMatch "^(board\.json|config\.php|config\.sample\.php)$">
+  Require all denied
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+Options -Indexes

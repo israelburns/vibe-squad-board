@@ -1,0 +1,11 @@
+# live secret — never commit
+config.php
+
+# runtime data
+board.json
+uploads/*
+!uploads/.htaccess
+!uploads/.keep
+
+# OS noise
+.DS_Store
