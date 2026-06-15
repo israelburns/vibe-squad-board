@@ -62,6 +62,11 @@ if ($AUTHED && $_SERVER['REQUEST_METHOD']==='POST') {
   if ($a==='delnote' && isset($_POST['i'])) {
     $i=(int)$_POST['i']; if(isset($board['notes'][$i])){ array_splice($board['notes'],$i,1); }
   }
+  if ($a==='editnote' && isset($_POST['i']) && trim($_POST['text']??'')!=='') {
+    $i=(int)$_POST['i']; if(isset($board['notes'][$i])){
+      $board['notes'][$i]['text'] = mb_substr(trim($_POST['text']),0,600);
+    }
+  }
   if ($a==='upload' && !empty($_FILES['file']['name'])) {
     $f=$_FILES['file'];
     $ext=strtolower(pathinfo($f['name'],PATHINFO_EXTENSION));
@@ -110,7 +115,8 @@ $done = count(array_filter($board['days']??[]));
   .day.done{opacity:.55;text-decoration:line-through}
   .day button{padding:3px 9px;font-size:13px}
   .note{background:#f7f3c8;color:#222;padding:10px;border-radius:4px;margin:8px 0;
-        box-shadow:2px 3px 6px #0005;transform:rotate(-.6deg);font-size:14px;position:relative}
+        box-shadow:2px 3px 6px #0005;transform:rotate(-.6deg);font-size:14px;position:relative;
+        word-break:break-word;overflow-wrap:break-word;overflow:hidden;max-width:100%}
   .note:nth-child(even){transform:rotate(.7deg);background:#cfeac0}
   .note b{display:block;font-size:12px;color:#444;margin-bottom:3px}
   .note .x{position:absolute;top:4px;right:6px;background:none;border:none;color:#933;font-size:14px;padding:0;cursor:pointer}
@@ -160,16 +166,31 @@ $done = count(array_filter($board['days']??[]));
         <form method="post">
           <input type="hidden" name="action" value="note">
           <input name="name" placeholder="your name" maxlength="30">
-          <textarea name="text" rows="2" placeholder="a thought, a blocker, a win..." maxlength="600"></textarea>
+          <textarea name="text" rows="6" placeholder="a thought, a blocker, a win..." maxlength="600" oninput="document.getElementById('note-count').textContent=this.value.length"></textarea>
+          <div style="text-align:right;font-size:12px;color:var(--line);margin:2px 0 6px"><span id="note-count">0</span>/600</div>
           <button>Pin it</button>
         </form>
-        <?php foreach(array_reverse($board['notes']??[],true) as $i=>$nt): ?>
-          <div class="note">
-            <form method="post" style="display:inline">
-              <input type="hidden" name="action" value="delnote"><input type="hidden" name="i" value="<?=$i?>">
-              <button class="x" title="remove">✕</button>
-            </form>
-            <b><?=h($nt['name'])?> · <?=h($nt['ts'])?></b><?=nl2br(h($nt['text']))?>
+        <?php foreach(array_reverse($board['notes']??[],true) as $i=>$nt):
+          $editing = isset($_GET['edit']) && (int)$_GET['edit'] === $i; ?>
+          <div class="note" style="<?=$editing?'transform:none;padding:12px':''?>">
+            <?php if($editing): ?>
+              <form method="post">
+                <input type="hidden" name="action" value="editnote">
+                <input type="hidden" name="i" value="<?=$i?>">
+                <b><?=h($nt['name'])?> · <?=h($nt['ts'])?></b>
+                <textarea name="text" rows="5" maxlength="600" style="margin:6px 0" oninput="this.nextElementSibling.textContent=this.value.length"><?=h($nt['text'])?></textarea>
+                <div style="text-align:right;font-size:11px;color:#666;margin-bottom:4px"><span><?=mb_strlen($nt['text'])?></span>/600</div>
+                <button style="font-size:13px">💾 Save</button>
+                <a href="./" style="font-size:13px;margin-left:6px;color:#666">cancel</a>
+              </form>
+            <?php else: ?>
+              <form method="post" style="display:inline">
+                <input type="hidden" name="action" value="delnote"><input type="hidden" name="i" value="<?=$i?>">
+                <button class="x" title="remove">✕</button>
+              </form>
+              <a href="?edit=<?=$i?>" style="position:absolute;top:4px;right:24px;background:none;border:none;color:#666;font-size:13px;text-decoration:none;cursor:pointer" title="edit">✏️</a>
+              <b><?=h($nt['name'])?> · <?=h($nt['ts'])?></b><span style="overflow-wrap:break-word"><?=nl2br(h($nt['text']))?></span>
+            <?php endif; ?>
           </div>
         <?php endforeach; ?>
       </div>
