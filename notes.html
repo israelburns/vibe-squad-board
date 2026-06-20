@@ -1,0 +1,139 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Vibe Squad — Course Notes (Study Guide)</title>
+<style>
+  :root{--bg:#070a12;--card:rgba(255,255,255,.04);--line:rgba(255,255,255,.10);
+        --ink:#e9edf6;--mut:#9aa3b8;--a1:#7c5cff;--a2:#22d3ee;--ok:#34d399;--warn:#fbbf24;}
+  *{box-sizing:border-box}html,body{margin:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);
+       line-height:1.65;padding:16px;font-size:16px;
+       background-image:radial-gradient(70vw 40vh at 10% -5%,rgba(124,92,255,.16),transparent 60%),
+                        radial-gradient(60vw 40vh at 100% 0,rgba(34,211,238,.12),transparent 55%);background-attachment:fixed}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:26px;margin:.2em 0;background:linear-gradient(120deg,var(--a1),var(--a2));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:18px}
+  h2{font-size:19px;margin:1.4em 0 .3em;border-bottom:1px solid var(--line);padding-bottom:6px}
+  h3{font-size:16px;margin:1em 0 .2em;color:var(--a2)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+  .spine{font-weight:700;font-size:17px;text-align:center;letter-spacing:.5px}
+  .mnem{text-align:center;color:var(--warn);font-style:italic;margin-top:4px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px}
+  .live{background:rgba(52,211,153,.15);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
+  b.k{color:#fff}
+  a{color:#9fd8ff}
+  .tie{color:var(--ok);font-size:14px}
+  ul{margin:.3em 0 .6em;padding-left:1.2em}
+  li{margin:.25em 0}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:.4em 0}
+  td,th{border:1px solid var(--line);padding:6px 8px;text-align:left}
+  th{color:var(--a2)}
+  .pill{display:inline-block;background:rgba(124,92,255,.16);border:1px solid rgba(124,92,255,.4);
+        border-radius:999px;padding:3px 10px;font-size:12px;margin:2px}
+  .foot{color:var(--mut);font-size:12px;text-align:center;margin:24px 0}
+  .back{display:inline-block;margin-bottom:10px;color:#9fd8ff;font-size:14px}
+</style></head><body><div class="wrap">
+
+<a class="back" href="./">&larr; back to HQ</a>
+<h1>📖 Course Notes — Study Guide</h1>
+<div class="sub">Kaggle 5-Day AI Agents · Vibe Coding w/ Google · everything they taught, phone-readable. Capstone due Mon Jul 6, 11:59 PM PT.</div>
+
+<div class="card">
+  <div class="spine">Build → Tools → Skills → Secure → Ship</div>
+  <div class="mnem">"Brokers That Sell Stay Solvent"</div>
+</div>
+
+<h2>The 5 Units</h2>
+
+<div class="card">
+<h3>Unit 1 — Agents &amp; Vibe Coding <span class="tag live">SDLC</span></h3>
+<ul>
+<li><b class="k">Big idea:</b> generation is solved — the new craft is <b class="k">verification, judgment, direction.</b></li>
+<li><b class="k">Agent = Model + Harness.</b> Most agent failures are <i>config</i> failures, not model failures.</li>
+<li><b class="k">Vibe coding → agentic engineering.</b> Differentiator = <b class="k">verification</b>: tests (deterministic) + evals (LM-judged).</li>
+<li>You're the <b class="k">orchestrator</b>, not the typist. SDLC: Plan, Design, Implement, Test, Deploy, Maintain.</li>
+</ul>
+<div class="tie">➡ Capstone: you direct + verify the agent; that's the whole pattern.</div>
+</div>
+
+<div class="card">
+<h3>Unit 2 — Tools &amp; Interoperability ("10x Agents")</h3>
+<ul>
+<li><b class="k">Big idea:</b> open protocols kill the tech debt of custom tool integrations.</li>
+<li><b class="k">MCP</b> (Model Context Protocol) — connects models to tools/data. <b class="k">A2A</b> — agent-to-agent. <b class="k">A2UI</b> — generative UI. <b class="k">AP2/UCP</b> — machine-to-machine payments/commerce.</li>
+</ul>
+<div class="tie">➡ Capstone: your scripts wrapped as an MCP server = the agent's tools.</div>
+</div>
+
+<div class="card">
+<h3>Unit 3 — Agent Skills (Memory &amp; Context)</h3>
+<ul>
+<li><b class="k">Big idea:</b> avoid <b class="k">"context rot"</b> with portable <b class="k">Agent Skills</b> — folders built around a central <b class="k">SKILL.md</b>.</li>
+<li><b class="k">Progressive disclosure:</b> keep the prompt light; load tools/details <b class="k">only on demand</b> → one agent flexes into hundreds of specialist roles.</li>
+</ul>
+<div class="tie">➡ Capstone: give each agent (score/match/personalize) its own skill.</div>
+</div>
+
+<div class="card">
+<h3>Unit 4 — Security &amp; Evaluation <span class="tag live">key day</span></h3>
+<ul>
+<li><b class="k">Big idea:</b> build <b class="k">"Effective Trust"</b> via a 7-pillar security architecture for non-deterministic AI.</li>
+<li>Tactics: <b class="k">ephemeral sandboxing</b>, defense vs <b class="k">"slopsquatting"</b> (fake hallucinated packages), a <b class="k">Red/Blue/Green</b> security triad, <b class="k">OpenTelemetry</b> trajectory evals, and <b class="k">human-in-the-loop</b> triage.</li>
+</ul>
+<div class="tie">➡ Capstone: your "nothing sends without approval" gate = textbook human-in-the-loop security.</div>
+</div>
+
+<div class="card">
+<h3>Unit 5 — Spec-Driven Production (SDD)</h3>
+<ul>
+<li><b class="k">Big idea:</b> bridge fragile prototypes to production. <b class="k">Code is disposable; behavior specs (Gherkin) are the source of truth.</b></li>
+<li>Zero-trust pipelines, <b class="k">automated code-review agents</b>, Policy Servers, deploy to cloud (Cloud Run) + <b class="k">observability</b>.</li>
+</ul>
+<div class="tie">➡ Capstone: a clean README + reproducible setup covers the "production" expectation.</div>
+</div>
+
+<h2>🔌 What is MCP?</h2>
+<div class="card">
+<p><b class="k">MCP = a USB-C port for AI.</b> Instead of hand-wiring a custom connector every time an agent needs a tool, you wrap the tool <b class="k">once</b> as an "MCP server" and <b class="k">any</b> agent can plug in. It's how your agent reaches your real-estate scripts.</p>
+<p>Watch (10 min):<br>
+▶ <a href="https://www.youtube.com/watch?v=54HI0bnNopA" target="_blank">MCP Explained in Under 10 Minutes</a><br>
+▶ <a href="https://www.youtube.com/watch?v=2cvqtvNArhs" target="_blank">MCP Explained in 10 Minutes (backup)</a></p>
+</div>
+
+<h2>🎬 Your HeyGen Video Workflow (capstone video = scored 10 pts)</h2>
+<div class="card">
+<ul>
+<li><b class="k">Avatar IV</b> — your face + cloned voice (Digital Twin).</li>
+<li><b class="k">4 steps:</b> ① upload assets first as chat attachments → ② paste prompt → ③ <b class="k">review the Plan before "Proceed with generation"</b> → ④ check render (logo visibility, lines, pronunciation).</li>
+<li><b class="k">Credits:</b> standard avatar ≈1–2 each; <b class="k">avoid Seedance2/VEO (4–10/sec).</b></li>
+<li><b class="k">Lessons:</b> solid-background logos (not transparent); control spelling-in-captions vs pronunciation-in-voice; captions on; fade-to-black outro w/ logos + link.</li>
+</ul>
+<div class="tie">➡ Capstone video structure: problem → why agents → architecture → demo → the build. ≤5 min, on YouTube.</div>
+</div>
+
+<h2>🏆 Capstone — what gets you the badge</h2>
+<div class="card">
+<p><b class="k">Badge = SUBMIT the capstone by Jul 6, 11:59 PM PT.</b> Daily assignments were never submitted/graded.</p>
+<p><b class="k">4 required artifacts:</b></p>
+<ul>
+<li>Kaggle Writeup (≤2,500 words) + pick a track</li>
+<li>Cover image (required)</li>
+<li>YouTube video ≤5 min (required)</li>
+<li>Public project link (live demo OR public GitHub repo + setup)</li>
+</ul>
+<p><b class="k">Track:</b> <span class="pill">Agents for Business</span> (Burns Realty = revenue pipeline)</p>
+<p><b class="k">Show ≥3 concepts</b> (you've got 4):</p>
+<table>
+<tr><th>Concept</th><th>Where</th><th>Your project</th></tr>
+<tr><td>Multi-agent (ADK)</td><td>Code</td><td>score→match→personalize→classify</td></tr>
+<tr><td>MCP Server</td><td>Code</td><td>scripts as tools</td></tr>
+<tr><td>Security</td><td>Code/Video</td><td>approval gate</td></tr>
+<tr><td>Antigravity</td><td>Video</td><td>built in Antigravity</td></tr>
+</table>
+<p><b class="k">Scoring (100):</b> Implementation 50 · Docs/README 20 · Pitch 30 (idea 10 / video 10 / writeup 10). <b>70% is code + docs.</b></p>
+<p style="color:var(--warn)">🚨 NO API keys or passwords in your code. Private resources on a public writeup go public after the deadline.</p>
+</div>
+
+<div class="foot">Vibe Squad study guide · save this page for offline reading · generation is solved — verification, judgment &amp; direction are the craft 🚀</div>
+</div></body></html>

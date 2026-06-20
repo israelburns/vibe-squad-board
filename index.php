@@ -252,6 +252,16 @@ function is_ext($u){ return preg_match('#^https?://#i',$u); }
     <a class="btn" href="<?=h($MEETING['link'])?>" target="_blank" rel="noopener">▶ Join Google Meet</a>
   </div>
 
+  <!-- COURSE NOTES (study guide) -->
+  <div class="card meet" style="border-color:rgba(34,211,238,.4);background:linear-gradient(120deg,rgba(34,211,238,.12),rgba(124,92,255,.10))">
+    <div class="info">
+      <span class="mono">Study guide</span>
+      <b>📖 Course Notes — everything they taught</b><br>
+      <span style="color:var(--mut);font-size:13.5px">All 5 units + MCP + capstone rubric. Phone-readable. Save it for offline.</span>
+    </div>
+    <a class="btn" href="notes.html">Open notes →</a>
+  </div>
+
   <!-- COURSE MAP -->
   <div class="shead"><h2>🗺️ Course Map</h2><div class="ln"></div>
     <span class="mono"><?=$done?>/5 done</span></div>
